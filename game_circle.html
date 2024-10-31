@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cattura il Cerchio</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        #circle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        #score {
+            position: absolute;
+            top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        button {
+            position: absolute;
+            bottom: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="score">Punteggio: 0</div>
+    <div id="circle"></div>
+    <button onclick="location.href='index.html'">Torna alla Home</button>
+
+    <script>
+        let score = 0;
+        const circle = document.getElementById('circle');
+        const scoreDisplay = document.getElementById('score');
+
+        function randomPosition() {
+            const x = Math.random() * (window.innerWidth - 50);
+            const y = Math.random() * (window.innerHeight - 50);
+            circle.style.left = x + 'px';
+            circle.style.top = y + 'px';
+        }
+
+        circle.addEventListener('click', () => {
+            score++;
+            scoreDisplay.textContent = 'Punteggio: ' + score;
+            randomPosition();
+        });
+
+        randomPosition();
+    </script>
+
+</body>
+</html>

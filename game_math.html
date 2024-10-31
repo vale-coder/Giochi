@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco Matematico</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #score {
+            position: absolute;
+            top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="score">Punteggio: 0</div>
+    <div id="question">Domanda: </div>
+    <input type="number" id="answer" placeholder="Risposta" />
+    <button onclick="checkAnswer()">Invia</button>
+    <button onclick="location.href='index.html'">Torna alla Home</button>
+
+    <script>
+        let score = 0;
+        const scoreDisplay = document.getElementById('score');
+        const questionDisplay = document.getElementById('question');
+        const answerInput = document.getElementById('answer');
+        let correctAnswer;
+
+        function generateQuestion() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            correctAnswer = num1 + num2;
+            questionDisplay.textContent = `Domanda: ${num1} + ${num2} = ?`;
+            answerInput.value = '';
+        }
+
+        function checkAnswer() {
+            if (parseInt(answerInput.value) === correctAnswer) {
+                score++;
+                scoreDisplay.textContent = 'Punteggio: ' + score;
+                generateQuestion();
+            } else {
+                alert('Risposta errata! Riprova.');
+            }
+        }
+
+        generateQuestion();
+    </script>
+
+</body>
+</html>

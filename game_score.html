@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco di Punteggio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #scoreboard {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #target {
+            font-size: 48px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Gioco di Punteggio</h1>
+        <div id="scoreboard">Punteggio: 0</div>
+        <div id="target">Clicca su: <span id="targetNumber"></span></div>
+        <button onclick="location.href='index.html'">Torna alla Home</button>
+
+    </div>
+
+    <script>
+        let score = 0;
+        const scoreboard = document.getElementById('scoreboard');
+        const targetNumberDisplay = document.getElementById('targetNumber');
+
+        function generateTarget() {
+            const targetNumber = Math.floor(Math.random() * 10) + 1;
+            targetNumberDisplay.textContent = targetNumber;
+            return targetNumber;
+        }
+
+        let target = generateTarget();
+
+        document.addEventListener('click', (event) => {
+            const clickedNumber = parseInt(event.target.textContent);
+            if (!isNaN(clickedNumber) && clickedNumber === target) {
+                score++;
+                scoreboard.textContent = 'Punteggio: ' + score;
+                target = generateTarget();
+            }
+        });
+    </script>
+
+</body>
+</html>
